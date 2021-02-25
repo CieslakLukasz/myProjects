@@ -1,10 +1,9 @@
 import React from "react";
-import { HashRouter, Route, Switch } from "react-router-dom";
+import { HashRouter, Route, Switch, NavLink } from "react-router-dom";
 
 import './App.scss';
-import GoogleSearch from './googleSearch/GoogleSearch';
-import GoogleImage from './googleImage/GoogleImage' ;
-import GoogleAdv from './googleAdv/GoogleAdv';
+import Task0 from './task0/Task0';
+
 
 
 
@@ -13,10 +12,16 @@ function App() {
   return (
     <div className="App">
      <HashRouter>
+     <nav>
+        <ul>
+        <li><NavLink exact to="/">Task 0</NavLink></li>
+        <li><NavLink exact to="/task1">Task 1</NavLink></li>
+
+        </ul>
+      </nav>
         <Switch>
-          <Route exact path="/" component={GoogleSearch} />
-          <Route path="/ImageSearch" component={GoogleImage} />       
-          <Route path="/AdvancedSearch" component={GoogleAdv} />       
+          <Route exact path="/" component={Task0} />
+
          </Switch>
       </HashRouter>
     </div>
