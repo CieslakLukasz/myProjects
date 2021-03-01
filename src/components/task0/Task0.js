@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import { Button, ButtonGroup } from 'bootstrap-4-react';
 
 import GoogleSearch from './googleSearch/GoogleSearch';
 import GoogleImage from './googleImage/GoogleImage' ;
@@ -13,12 +14,15 @@ const handleClick = (e) => {
 
     return (
         <div>
-        <ul>
-        <li><button onClick={handleClick} value='search'>google search</button></li>
-        <li><button onClick={handleClick} value='image'>google images</button></li>
-        <li><button onClick={handleClick} value='advanced'>google advanced</button></li>
-        </ul>
+        <ButtonGroup aria-label="Basic example">
+        <Button secondary onClick={handleClick} value='search'>google search</Button>
+        <Button secondary onClick={handleClick} value='image'>google images</Button>
+        <Button secondary onClick={handleClick} value='advanced'>google advanced</Button>
+        </ButtonGroup>
+        <br/>
+        <div style={{display:'flex', alignItems:'center', justifyContent:'center'}}>
         {search==='search'? <GoogleSearch/> : search==='image' ? <GoogleImage/> : <GoogleAdv/>}
+        </div>
         </div>
     )
 }
