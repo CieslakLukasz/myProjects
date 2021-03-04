@@ -10,7 +10,8 @@ export default function GoogleSearch() {
             <Form action="https://google.com/search">
             <label htmlFor='search'>Tu wyszukuje w googlach:</label>
             <InputGroup mb='2'>
-            <Form.Input type="text"  class="form-control" id='search'/>
+            <Form.Input type="text"  className="form-control" id='search' name='q'/>
+            <input type="hidden" name="tbm" value="isch" />
             <Button primary type="submit">Google Search</Button>
             </InputGroup>
         </Form>

@@ -16,7 +16,7 @@ function App() {
   return (
     <BrowserRouter>
     <div className="App">
-    <Nav tabs>
+    <Nav tabs >
     <Nav.ItemLink active={active==='task0' ? 'active' : ''}><NavLink exact to='/' onClick={handleClick} name='task0'>Task0</NavLink></Nav.ItemLink>
     <Nav.ItemLink active={active==='task1' ? 'active' : ''}><NavLink exact to='/task1' onClick={handleClick} name='task1'>Task1</NavLink></Nav.ItemLink>
     </Nav>
