@@ -29,11 +29,6 @@ export default function HexGenerator() {
   });
 
   useEffect(() => {
-      console.log(style);
-
-      console.log(styleBefore);
-
-      let whbefore = state.width - 2* state.border_width;
 
     setStyle({...style,
       width: `${state.width}px`,
@@ -115,7 +110,7 @@ export default function HexGenerator() {
             <div style={styleBefore}></div></div>
 
           </div>
-        
+
         </div>
 
         <div className="code-box">
