@@ -1,0 +1,15 @@
+{
+    "css.lint.unknownAtRules": "ignore",
+    "scss.lint.validProperties": [
+        "mso-table-lspace",
+        "mso-table-rspace",
+        "mso-line-height-rule",
+        "mso-hide"
+    ],
+    "css.lint.validProperties": [
+        "mso-hide",
+        "mso-line-height-rule",
+        "mso-table-rspace",
+        "mso-table-lspace"
+    ]
+}
