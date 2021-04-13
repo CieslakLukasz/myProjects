@@ -1,4 +1,4 @@
-.flex-row {
+label {
     width: 10vw;
     display: flex;
     align-items: flex-end;
@@ -39,3 +39,31 @@
     justify-content: center;
 
 }
+
+.hexagon-wrap {
+    filter: -webkit-drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.5));
+    filter: drop-shadow(5px 5px 5px  rgba(0, 0, 0, 0.5));
+
+}
+.hexagon {
+    margin-left: 10px;
+    position: relative;
+    height: 102px;
+    width: 102px;
+    background: #f00000;
+
+
+  }
+  .hexagon:before {
+    position: absolute;
+    content: '';
+    top: 1px;
+    left: 1px;
+    height: calc(100% - 2px);
+    width: calc(100% - 2px);
+    background: #efbdbd;
+  }
+  .hexagon, .hexagon:before {
+    -webkit-clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  }
