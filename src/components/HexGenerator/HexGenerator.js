@@ -5,10 +5,10 @@ import Input from "./Input";
 
 const initialState = {
   width: 200,
-  color: "#e66465",
+  color: "#f1f500",
   border: false,
-  border_color: "#f00000",
-  border_width: 2,
+  border_color: "#000000",
+  border_width: 4,
   shadow: false,
   shadow_right: 5,
   shadow_down: 5,
@@ -25,7 +25,7 @@ const initialStyle = {
   position: "relative",
   width: "200px",
   height: "200px",
-  backgroundColor: "##f00000",
+  backgroundColor: "#000000",
   webkitClipPath:
     "polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)",
   clipPath: "polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)",
@@ -37,7 +37,7 @@ const initialStyleBefore = {
   left: "2px",
   height: "calc(100% - 4px)",
   width: "calc(100% - 4px)",
-  backgroundColor: "#e66465",
+  backgroundColor: "#f1f500",
   webkitClipPath:
     "polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)",
   clipPath: "polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)",
@@ -66,7 +66,7 @@ export default function HexGenerator() {
     let color = state.border? state.border_color : state.color;
     let width = state.border? state.border_width : 0;
     setRGBa(hexToRGB(state.shadow_color, state.shadow_opacity));
-    console.log(state.shadow);
+
     setStyle({
       ...style,
       width: `${state.width}px`,
@@ -87,7 +87,6 @@ export default function HexGenerator() {
       filter: `drop-shadow(${state.shadow_right}px ${state.shadow_down}px ${state.shadow_blur}px ${RGBa})`,
     });}else{
       setStyleWrap({
-
       })
     }
     return () => {};
@@ -131,8 +130,11 @@ export default function HexGenerator() {
         <div className="code-box">
           <div>HTML:</div>
           <div>
-
-            <pre>{`<div class='hexagon'></div>`}</pre>
+            {state.shadow ?
+            <pre>{`<div class='hexagon-wrap'>
+    <div class='hexagon'></div>
+</div>`}</pre> :
+            <pre>{`<div class='hexagon'></div>`}</pre>}
           </div>
           <div>CSS :</div>
           <div>
@@ -158,6 +160,7 @@ left: ${styleBefore.left};
 height: calc(100% - ${2 * styleBefore.top.slice(0, (styleBefore.top).length -2)}px);
 width: calc(100% - ${2 * styleBefore.top.slice(0, (styleBefore.top).length -2)}px);
 background: ${state.color};
+}
 `}</pre> :
 <pre>{`
 .hexagon:before {
@@ -165,6 +168,8 @@ position: absolute;
 content: '';
 height: 100%;
 width: 100%;
+background: ${state.color};
+}
 `}</pre>}
 
 {state.shadow ? <pre>{`
