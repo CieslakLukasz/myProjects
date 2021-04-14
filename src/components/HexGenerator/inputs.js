@@ -2,14 +2,17 @@ const inputs = [
   {
     about: "width",
     text: "Width (px) :",
-    type: "number",
+    type: "range",
     name: "width",
     placeholder: "width",
     value: "{state.width}",
+    min: "0",
+    max: "999",
+    step: "1"
   },
   {
     about: "Hex_color",
-    text: "Hexagon color",
+    text: "Hexagon color :",
     type: "color",
     name: "color",
     placeholder: "",
@@ -17,7 +20,7 @@ const inputs = [
   },
   {
     about: "border",
-    text: "Border",
+    text: "Border :",
     type: "checkbox",
     name: "border",
     placeholder: "",
@@ -26,14 +29,17 @@ const inputs = [
   {
     about: "border",
     text: "Border (px) :",
-    type: "number",
+    type: "range",
     name: "border_width",
     placeholder: "border width",
     value: "{state.border_width}",
+    min: "0",
+    max: "100",
+    step: "1"
   },
   {
     about: "border",
-    text: "Border color",
+    text: "Border color :",
     type: "color",
     name: "border_color",
     placeholder: "",
@@ -41,7 +47,7 @@ const inputs = [
   },
   {
     about: "shadow",
-    text: "Shadow",
+    text: "Shadow :",
     type: "checkbox",
     name: "shadow",
     placeholder: "",
@@ -49,7 +55,7 @@ const inputs = [
   },
   {
     about: "shadow",
-    text: "Shift right",
+    text: "Shift right :",
     type: "range",
     name: "shadow_right",
     placeholder: "",
@@ -60,7 +66,7 @@ const inputs = [
   },
   {
     about: "shadow",
-    text: "Shift down",
+    text: "Shift down :",
     type: "range",
     name: "shadow_down",
     placeholder: "",
@@ -71,7 +77,7 @@ const inputs = [
   },
   {
     about: "shadow",
-    text: "Blur",
+    text: "Blur :",
     type: "range",
     name: "shadow_blur",
     placeholder: "",
@@ -82,7 +88,7 @@ const inputs = [
   },
   {
     about: "shadow",
-    text: "Opacity",
+    text: "Opacity :",
     type: "range",
     name: "shadow_opacity",
     placeholder: "",
@@ -93,7 +99,7 @@ const inputs = [
   },
   {
     about: "shadow",
-    text: "Color",
+    text: "Color :",
     type: "color",
     name: "shadow_color",
     placeholder: "",

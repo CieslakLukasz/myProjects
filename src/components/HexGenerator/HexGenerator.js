@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from "react";
 import "./HexGenerator.scss";
+
 import inputs from "./inputs";
+
 import Input from "./Input";
+import CodeBox from "./CodeBox";
+import HexagonBox from "./HexagonBox";
 
 const initialState = {
   width: 200,
@@ -60,11 +64,13 @@ export default function HexGenerator() {
   const [style, setStyle] = useState(initialStyle);
   const [styleWrap, setStyleWrap] = useState(initialStyleWrap);
   const [styleBefore, setStyleBefore] = useState(initialStyleBefore);
-  const [RGBa, setRGBa] = useState(hexToRGB(state.shadow_color, state.shadow_opacity));
+  const [RGBa, setRGBa] = useState(
+    hexToRGB(state.shadow_color, state.shadow_opacity)
+  );
 
   useEffect(() => {
-    let color = state.border? state.border_color : state.color;
-    let width = state.border? state.border_width : 0;
+    let color = state.border ? state.border_color : state.color;
+    let width = state.border ? state.border_width : 0;
     setRGBa(hexToRGB(state.shadow_color, state.shadow_opacity));
 
     setStyle({
@@ -81,106 +87,60 @@ export default function HexGenerator() {
       width: `calc(100% - 2* ${width}px)`,
       backgroundColor: `${state.color}`,
     });
-    if(state.shadow){
-    setStyleWrap({
-      filter: `webkit-drop-shadow(${state.shadow_right}px ${state.shadow_down}px ${state.shadow_blur}px ${RGBa})`,
-      filter: `drop-shadow(${state.shadow_right}px ${state.shadow_down}px ${state.shadow_blur}px ${RGBa})`,
-    });}else{
+    if (state.shadow) {
       setStyleWrap({
-      })
+        filter: `webkit-drop-shadow(${state.shadow_right}px ${state.shadow_down}px ${state.shadow_blur}px ${RGBa})`,
+        filter: `drop-shadow(${state.shadow_right}px ${state.shadow_down}px ${state.shadow_blur}px ${RGBa})`,
+      });
+    } else {
+      setStyleWrap({});
     }
     return () => {};
   }, [state]);
 
   const handleChange = (e) => {
-
-     if(e.target.type === 'checkbox'){
-       // if its checkbox we toggle true/false
-      setState({...state, [e.target.name]: !state[e.target.name] })
-    } else if (isNaN(parseInt(e.target.value))) {
-      // if its not a number (in this case its color bu could be more text fields for eg)
-      setState({ ...state, [e.target.name]: e.target.value });
-    } else if (e.target.type === "range") {
-      // if its range input (we can change  + and - values)
-      setState({ ...state, [e.target.name]: e.target.value });
-    } else if (parseInt(e.target.value) < 0) {
-      // for rest numbers - this case diameters - this cant be <0 so just return
-      return;
+    const about = e.target.dataset.about;
+    if (e.target.type === "checkbox") {
+      // if its checkbox we toggle true/false
+      setState({ ...state, [e.target.name]: !state[e.target.name] });
+    } else if (e.target.type === "number") {
+      if ( about === "shadow") {
+        setState({ ...state, [e.target.name]: parseInt(e.target.value) });
+      }else if (parseInt(e.target.value) < 0) {
+          return;
+        } else {
+          setState({ ...state, [e.target.name]: parseInt(e.target.value) });
+        }
     } else {
-      // and if numbers is > 0 change.
-      setState({ ...state, [e.target.name]: parseInt(e.target.value) });
+      setState({ ...state, [e.target.name]: e.target.value });
     }
   };
 
   return (
-    <div>
-      {inputs.map((el, i) => (
-        <Input key={i} data={el} handleChange={handleChange} state={state} />
-      ))}
-
-      <div className="box">
-        <div className="hex-box">
-          <div style={styleWrap}>
-            <div style={style} id="hex">
-              <div style={styleBefore}></div>
-            </div>
-          </div>
+    <div className="container">
+      <div className="flex-col">
+        <div className="input-box">
+          {inputs.map((el, i) => (
+            <Input
+              key={i}
+              data={el}
+              handleChange={handleChange}
+              state={state}
+            />
+          ))}
         </div>
-
-        <div className="code-box">
-          <div>HTML:</div>
-          <div>
-            {state.shadow ?
-            <pre>{`<div class='hexagon-wrap'>
-    <div class='hexagon'></div>
-</div>`}</pre> :
-            <pre>{`<div class='hexagon'></div>`}</pre>}
-          </div>
-          <div>CSS :</div>
-          <div>
-
-            <pre>
-              {`.hexagon {
-position: relative;
-height: ${style.width};
-width: ${style.width};
-background: ${state.border_color};
-}
-
-.hexagon, .hexagon:before {
--webkit-clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-}`}
-{state.border? <pre>{`
-.hexagon:before {
-position: absolute;
-content: '';
-top: ${styleBefore.top};
-left: ${styleBefore.left};
-height: calc(100% - ${2 * styleBefore.top.slice(0, (styleBefore.top).length -2)}px);
-width: calc(100% - ${2 * styleBefore.top.slice(0, (styleBefore.top).length -2)}px);
-background: ${state.color};
-}
-`}</pre> :
-<pre>{`
-.hexagon:before {
-position: absolute;
-content: '';
-height: 100%;
-width: 100%;
-background: ${state.color};
-}
-`}</pre>}
-
-{state.shadow ? <pre>{`
-.hexagon-wrap {
-filter: -webkit-drop-shadow(${state.shadow_right}px ${state.shadow_down}px ${state.shadow_blur}px ${RGBa});
-filter: drop-shadow(${state.shadow_right}px ${state.shadow_down}px ${state.shadow_blur}px ${RGBa});
-}`}</pre> : ''}
-            </pre>
-          </div>
-        </div>
+        <HexagonBox
+          style={style}
+          styleWrap={styleWrap}
+          styleBefore={styleBefore}
+        />
       </div>
+      <CodeBox
+        style={style}
+        styleBefore={styleBefore}
+        state={state}
+        RGBa={RGBa}
+      />
     </div>
   );
 }
