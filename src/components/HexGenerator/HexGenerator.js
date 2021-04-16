@@ -113,13 +113,13 @@ export default function HexGenerator() {
       setState({ ...state, [e.target.name]: !state[e.target.name] });
     } else if (e.target.type === "number") {
       //for numbers inputs - if its about shadow => it can be negative and we have to use parseFloat becouse opacity is decimal
-      // else if its not shadow => so its border o width => it cant be negative, so we return on <0 or parseint value on positve numbers
+      // else if its not shadow => so its border o width => it cant be negative, so we return on <0 or parseFloat value on positve numbers
       if ( about === "shadow") {
         setState({ ...state, [e.target.name]: parseFloat(e.target.value) });
       }else if (parseInt(e.target.value) < 0) {
           return;
         } else {
-          setState({ ...state, [e.target.name]: parseInt(e.target.value) });
+          setState({ ...state, [e.target.name]: parseFloat(e.target.value) });
         }
     } else {
       //for rest : colors / range
