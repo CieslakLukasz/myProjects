@@ -38,8 +38,14 @@
   align-items: flex-start;
   justify-content: start;
   overflow-y: scroll;
+  border: 1px solid black;
+  border-radius: 5%;
+  padding: 10px;
   div {
     padding-bottom: 10px;
+  }
+  span {
+    font-weight: bold;
   }
 }
 
@@ -54,12 +60,13 @@
 
   height: 30px;
   label {
-    width: 280px;
+    width: 300px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     output {
-      width: 45px;
+      margin-left: 5px;
+      width: 58px;
       display: flex;
       justify-content: flex-end;
       input {
@@ -83,6 +90,89 @@
     justify-content: center;
   }
   .code-box {
-    width: 100%;
+
+    width: 90%;
   }
+}
+
+input[type=range] {
+  width: 100%;
+  margin: 4.5px 0;
+  background-color: transparent;
+  -webkit-appearance: none;
+}
+input[type=range]:focus {
+  outline: none;
+}
+input[type=range]::-webkit-slider-runnable-track {
+  background: #5aaaff;
+  border: 0.1px solid #010101;
+  border-radius: 25px;
+  width: 100%;
+  height: 6px;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  margin-top: -4.6px;
+  width: 15px;
+  height: 15px;
+  background: #5aaaff;
+  border: 1px solid #000000;
+  border-radius: 50px;
+  cursor: pointer;
+  -webkit-appearance: none;
+}
+input[type=range]:focus::-webkit-slider-runnable-track {
+  background: #a7d1ff;
+}
+input[type=range]::-moz-range-track {
+  background: #5aaaff;
+  border: 0.1px solid #010101;
+  border-radius: 25px;
+  width: 100%;
+  height: 6px;
+  cursor: pointer;
+}
+input[type=range]::-moz-range-thumb {
+  width: 15px;
+  height: 15px;
+  background: #5aaaff;
+  border: 1px solid #000000;
+  border-radius: 50px;
+  cursor: pointer;
+}
+input[type=range]::-ms-track {
+  background: transparent;
+  border-color: transparent;
+  border-width: 5.5px 0;
+  color: transparent;
+  width: 100%;
+  height: 6px;
+  cursor: pointer;
+}
+input[type=range]::-ms-fill-lower {
+  background: #0e83ff;
+  border: 0.1px solid #010101;
+  border-radius: 50px;
+}
+input[type=range]::-ms-fill-upper {
+  background: #5aaaff;
+  border: 0.1px solid #010101;
+  border-radius: 50px;
+}
+input[type=range]::-ms-thumb {
+  width: 15px;
+  height: 15px;
+  background: #5aaaff;
+  border: 1px solid #000000;
+  border-radius: 50px;
+  cursor: pointer;
+  margin-top: 0px;
+  /*Needed to keep the Edge thumb centred*/
+}
+input[type=range]:focus::-ms-fill-lower {
+  background: #5aaaff;
+}
+input[type=range]:focus::-ms-fill-upper {
+  background: #a7d1ff;
 }

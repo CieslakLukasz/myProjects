@@ -3,7 +3,7 @@ import React from 'react'
 export default function CodeBox({style, styleBefore, state, RGBa}) {
     return (
         <div className="code-box">
-          <div>HTML:</div>
+          <div><span>HTML:</span></div>
           <div>
             {state.shadow ?
             <pre>{`<div class='hexagon-wrap'>
@@ -14,7 +14,7 @@ export default function CodeBox({style, styleBefore, state, RGBa}) {
 <div class='hexagon'></div>
             `}</pre>}
           </div>
-          <div>CSS :</div>
+          <div><span>CSS :</span></div>
           <div>
 
             <pre>
