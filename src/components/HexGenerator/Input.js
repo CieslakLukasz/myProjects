@@ -4,7 +4,6 @@ export default function Input({data, handleChange, state}) {
     const [disabled, setDisabled] = useState(false);
 
     useEffect(() => {
-        console.log(typeof(state[data.about]), state[data.about], data.type,  disabled);
         if((typeof(state[data.about]) === 'boolean') && !(state[data.about]) && !(data.type ==='checkbox')){
             setDisabled(true);
         }else{
@@ -36,6 +35,9 @@ export default function Input({data, handleChange, state}) {
         name={data.name}
         value={state[data.name.replace(/^"(.+(?="$))"$/, '$1')]}
         onChange={handleChange}
+        min={data.min}
+        max={data.max}
+        step={data.step}
         disabled={disabled}
         ></input></output>
         </div>

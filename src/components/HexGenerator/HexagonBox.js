@@ -1,8 +1,8 @@
 import React from 'react'
 
-export default function HexagonBox({style, styleWrap, styleBefore}) {
+export default function HexagonBox({style, styleWrap, styleBefore, styleBackground}) {
     return (
-        <div className="box">
+        <div className="box" style={styleBackground}>
           <div style={styleWrap}>
             <div style={style} id="hex">
               <div style={styleBefore}></div>

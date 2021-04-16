@@ -104,7 +104,14 @@ const inputs = [
     name: "shadow_color",
     placeholder: "",
     value: "{state.shadow_color}",
-  }
+  },
+   {
+    about: 'background',
+    text: "Your Backgroundcolor: ",
+    type: "color",
+    name: "bg_color",
+    value: "{state.bg_color}"
+   }
 ];
 
 export default inputs;

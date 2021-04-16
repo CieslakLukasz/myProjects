@@ -10,17 +10,24 @@ import HexagonBox from "./HexagonBox";
 const initialState = {
   width: 200,
   color: "#f1f500",
-  border: false,
+  border: true,
   border_color: "#000000",
   border_width: 4,
-  shadow: false,
-  shadow_right: 5,
-  shadow_down: 5,
+  shadow: true,
+  shadow_right: 15,
+  shadow_down: 15,
   shadow_blur: 5,
   shadow_opacity: 0.5,
   shadow_color: "#000000",
   shadow_rgba: "rgba(0,0,0,0.5)",
+  bg_color: "#ffffff"
 };
+const initialStyleBackground = {
+  backgroundColor: '#ffffff',
+  padding: '15px',
+  margin: '15px',
+  borderRadius: '5%'
+}
 const initialStyleWrap = {
   filter: "webkit-drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.5))",
   filter: "drop-shadow(5px 5px 5px  rgba(0, 0, 0, 0.5))",
@@ -47,20 +54,17 @@ const initialStyleBefore = {
   clipPath: "polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)",
 };
 
+//in some point we need to change hex from inpup.value and opacity to one lane, so we can use it in react style of shadow as rgba
 function hexToRGB(hex, alpha) {
   var r = parseInt(hex.slice(1, 3), 16),
     g = parseInt(hex.slice(3, 5), 16),
     b = parseInt(hex.slice(5, 7), 16);
-
-  if (alpha) {
     return "rgba(" + r + ", " + g + ", " + b + ", " + alpha + ")";
-  } else {
-    return "rgb(" + r + ", " + g + ", " + b + ")";
-  }
 }
 
 export default function HexGenerator() {
   const [state, setState] = useState(initialState);
+  const [styleBackground, setStyleBackground] = useState(initialStyleBackground);
   const [style, setStyle] = useState(initialStyle);
   const [styleWrap, setStyleWrap] = useState(initialStyleWrap);
   const [styleBefore, setStyleBefore] = useState(initialStyleBefore);
@@ -68,11 +72,13 @@ export default function HexGenerator() {
     hexToRGB(state.shadow_color, state.shadow_opacity)
   );
 
+
+  // after state change (when we change anything in inputs) we need to update all styles
   useEffect(() => {
     let color = state.border ? state.border_color : state.color;
     let width = state.border ? state.border_width : 0;
     setRGBa(hexToRGB(state.shadow_color, state.shadow_opacity));
-
+    setStyleBackground({...styleBackground, backgroundColor: `${state.bg_color}`});
     setStyle({
       ...style,
       width: `${state.width}px`,
@@ -98,20 +104,25 @@ export default function HexGenerator() {
     return () => {};
   }, [state]);
 
+
+  // becouse we generate inputs from array, we need condition in out handleChange :
   const handleChange = (e) => {
     const about = e.target.dataset.about;
     if (e.target.type === "checkbox") {
       // if its checkbox we toggle true/false
       setState({ ...state, [e.target.name]: !state[e.target.name] });
     } else if (e.target.type === "number") {
+      //for numbers inputs - if its about shadow => it can be negative and we have to use parseFloat becouse opacity is decimal
+      // else if its not shadow => so its border o width => it cant be negative, so we return on <0 or parseint value on positve numbers
       if ( about === "shadow") {
-        setState({ ...state, [e.target.name]: parseInt(e.target.value) });
+        setState({ ...state, [e.target.name]: parseFloat(e.target.value) });
       }else if (parseInt(e.target.value) < 0) {
           return;
         } else {
           setState({ ...state, [e.target.name]: parseInt(e.target.value) });
         }
     } else {
+      //for rest : colors / range
       setState({ ...state, [e.target.name]: e.target.value });
     }
   };
@@ -133,6 +144,8 @@ export default function HexGenerator() {
           style={style}
           styleWrap={styleWrap}
           styleBefore={styleBefore}
+          styleBackground={styleBackground}
+
         />
       </div>
       <CodeBox
