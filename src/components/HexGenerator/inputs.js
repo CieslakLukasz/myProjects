@@ -18,6 +18,13 @@ const inputs = [
     placeholder: "",
     value: "{state.color}",
   },
+   {
+    about: 'background',
+    text: "Your Backgroundcolor: ",
+    type: "color",
+    name: "bg_color",
+    value: "{state.bg_color}"
+   },
   {
     about: "border",
     text: "Border :",
@@ -99,19 +106,12 @@ const inputs = [
   },
   {
     about: "shadow",
-    text: "Color :",
+    text: "Shadow color :",
     type: "color",
     name: "shadow_color",
     placeholder: "",
     value: "{state.shadow_color}",
-  },
-   {
-    about: 'background',
-    text: "Your Backgroundcolor: ",
-    type: "color",
-    name: "bg_color",
-    value: "{state.bg_color}"
-   }
+  }
 ];
 
 export default inputs;
