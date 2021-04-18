@@ -11,5 +11,13 @@
         "mso-line-height-rule",
         "mso-table-rspace",
         "mso-table-lspace"
+    ],
+    "spellright.language": [
+        "pl"
+    ],
+    "spellright.documentTypes": [
+        "markdown",
+        "latex",
+        "plaintext"
     ]
 }

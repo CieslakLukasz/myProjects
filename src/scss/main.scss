@@ -1,5 +1,14 @@
 @import './reset.scss';
+@import './variables.scss';
+@import "~bootstrap/scss/bootstrap";
+
+
 
 :root {
     font-family: sans-serif;
+
+}
+body {
+    background-color: $primary-color;
+    color: honeydew;
 }
