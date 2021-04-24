@@ -1,0 +1,78 @@
+@import "./variables.scss";
+
+
+.hexagon-nav {
+    position: absolute;
+    top: calc(-#{$big-hex-w} * 0.28);
+    right: calc(-#{$big-hex-w} * 0.35);
+}
+
+.big-hex {
+  height: $big-hex-w;
+  width: $big-hex-w;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  div {
+    padding-left: 15px;
+    padding-right: 15px;
+    width: calc(#{$big-hex-w} * 0.65);
+  }
+}
+
+.big-hex:before {
+  top: $big-hex-b;
+  left: $big-hex-b;
+  height: calc(100% - 2 *#{$big-hex-b});
+  width: calc(100% - 2 *#{$big-hex-b});
+}
+.small-hex {
+  height: $small-hex-w;
+  width: $small-hex-w;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  div {
+    width: 100%;
+    padding-left: 5px;
+    padding-right: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.small-hex:before {
+  top: $small-hex-b;
+  left: $small-hex-b;
+  height: calc(100% - 2 *#{$small-hex-b});
+  width: calc(100% - 2 *#{$small-hex-b});
+}
+.hexagon {
+  position: relative;
+  background: $secondary-color;
+  margin: 5px;
+}
+
+.hexagon,
+.hexagon:before {
+
+  -webkit-clip-path: polygon(
+    50% 0%,
+    100% 25%,
+    100% 75%,
+    50% 100%,
+    0% 75%,
+    0% 25%
+  );
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+}
+
+.hexagon:before {
+
+  position: absolute;
+  content: "";
+  background: $primary-color;
+  z-index: -1;
+}
+

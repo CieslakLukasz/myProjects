@@ -1,6 +1,7 @@
 @import './reset.scss';
 @import './variables.scss';
 @import "~bootstrap/scss/bootstrap";
+@import './hexagon.scss';
 
 
 
@@ -11,4 +12,16 @@
 body {
     background-color: $primary-color;
     color: honeydew;
+}
+
+.main-content {
+    margin-left: 5vw;
+    margin-right: 5vw;
+    margin-top: calc(#{$big-hex-w} * 0.65 - (100vw - 576px) * 0.25);
+    max-width: 60vw;
+}
+@media (min-width: 1250px) {
+.main-content{
+margin-top: calc(#{$big-hex-w} * 0.65 - (1250px - 576px) * 0.25);
+}
 }

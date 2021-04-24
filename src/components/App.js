@@ -12,7 +12,8 @@ import About from './About/About';
 
 export default function App() {
   return(
-    <BrowserRouter>
+    <div>
+    <BrowserRouter >
     <Header/>
     <Switch>
       <Route exact path="/" component={Skills} />
@@ -20,5 +21,6 @@ export default function App() {
       <Route path="/about" component={About} />
     </Switch>
   </BrowserRouter>
+  </div>
   )
 }
