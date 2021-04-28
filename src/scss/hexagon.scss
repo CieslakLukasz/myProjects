@@ -7,6 +7,11 @@
     right: calc(-#{$big-hex-w} * 0.35);
 }
 
+.hexagon-wrap {
+  filter: -webkit-drop-shadow(-5px 5px 15px rgba(black, 1));
+  filter: drop-shadow(-5px 5px 15px rgba(black, 1));
+  }
+
 .big-hex {
   height: $big-hex-w;
   width: $big-hex-w;
@@ -52,6 +57,13 @@
   position: relative;
   background: $secondary-color;
   margin: 5px;
+}
+
+.hexagon.onHover {
+  background: $on-hover-color;
+}
+.hexagon.onClick {
+  background: $on-click-color;
 }
 
 .hexagon,

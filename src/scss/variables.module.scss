@@ -1,0 +1,12 @@
+@import './variables.scss';
+
+:export {
+    primaryColor: $primary-color;
+    secondaryColor: $secondary-color;
+    onHoverColor: $on-hover-color;
+    onClickColor: $on-click-color;
+    bigHexW: $big-hex-w;
+    bigHexB: $big-hex-b;
+    smallHexW: $small-hex-w;
+    smallHexB: $small-hex-b;
+}

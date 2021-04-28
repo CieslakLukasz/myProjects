@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 import './Header.scss';
 
 
-export default function Header() {
+export default function Header({display}) {
   return (
     <nav className='navigation navbar navbar-expand-sm fixed-top pb-3'>
     <ul class="navbar-nav mr-auto">
@@ -17,11 +17,11 @@ export default function Header() {
       <Link className="nav-link" to="/about">About</Link>
       </li>
     </ul>
-    <div className='hexagon-nav'><div className='hexagon big-hex'>
-    <div>Lorem ipsum odor amet, consectetuer adipiscing elit. Ac purus in massa egestas mollis varius;
-    dignissim elementum. Mollis tincidunt mattis hendrerit dolor eros enim, nisi ligula ornare.</div>
-    </div></div>
+    <div className='hexagon-nav'><div class='hexagon-wrap'><div className='hexagon big-hex'>
+    <div>{display.description}</div>
+    </div></div></div>
 
   </nav>
   );
 }
+
